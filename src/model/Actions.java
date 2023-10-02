@@ -2,37 +2,37 @@ package model;
 
 public class Actions<T> {
 
-    private Actions next;
-    private Actions prev;
+    private Actions<T> next;
+    private Actions<T> prev;
 
     private T typeAction;
-    private T taskOG;
-    private T taskMod;
+    private T taskOriginal;
+    private T taskModified;
 
-    public Actions(T typeAction, T taskOG) {
+    public Actions(T typeAction, T taskOriginal) {
         this.typeAction = typeAction;
-        this.taskOG = taskOG;
+        this.taskOriginal = taskOriginal;
     }
 
-    public Actions(T typeAction, T taskOG, T taskMod) {
+    public Actions(T typeAction, T taskOriginal, T taskModified) {
         this.typeAction = typeAction;
-        this.taskOG = taskOG;
-        this.taskMod = taskMod;
+        this.taskOriginal = taskOriginal;
+        this.taskModified = taskModified;
     }
 
-    public Actions getNext() {
+    public Actions<T> getNext() {
         return next;
     }
 
-    public void setNext(Actions next) {
+    public void setNext(Actions<T> next) {
         this.next = next;
     }
 
-    public Actions getPrev() {
+    public Actions<T> getPrev() {
         return prev;
     }
 
-    public void setPrev(Actions prev) {
+    public void setPrev(Actions<T> prev) {
         this.prev = prev;
     }
 
@@ -44,19 +44,19 @@ public class Actions<T> {
         this.typeAction = typeAction;
     }
 
-    public T getTaskOG() {
-        return taskOG;
+    public T getTaskOriginal() {
+        return taskOriginal;
     }
 
-    public void setTaskOG(T taskOG) {
-        this.taskOG = taskOG;
+    public void setTaskOriginal(T taskOriginal) {
+        this.taskOriginal = taskOriginal;
     }
 
-    public T getTaskMod() {
-        return taskMod;
+    public T getTaskModified() {
+        return taskModified;
     }
 
-    public void setTaskMod(T taskMod) {
-        this.taskMod = taskMod;
+    public void setTaskModified(T taskModified) {
+        this.taskModified = taskModified;
     }
 }

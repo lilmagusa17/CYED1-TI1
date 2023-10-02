@@ -10,8 +10,8 @@ public class Stack<T> implements StackInterface<T> {
     private Actions<T> tail;
 
     @Override
-    public void push(T typeAction, T taskOG) throws EmptyStackException{
-        Actions<T> node = new Actions<>(typeAction,taskOG);
+    public void push(T typeAction, T taskOriginal) throws EmptyStackException{
+        Actions<T> node = new Actions<>(typeAction,taskOriginal);
 
         // list is empty
         if(this.head == null){
@@ -29,8 +29,8 @@ public class Stack<T> implements StackInterface<T> {
     }
 
     @Override
-    public void push(T typeAction, T taskOG, T taskMod) throws EmptyStackException{
-        Actions<T> node = new Actions<>(typeAction,taskOG,taskMod);
+    public void push(T typeAction, T taskOriginal, T taskModified) throws EmptyStackException{
+        Actions<T> node = new Actions<>(typeAction,taskOriginal,taskModified);
 
         // list is empty
         if(this.head == null){
@@ -50,20 +50,21 @@ public class Stack<T> implements StackInterface<T> {
 
     @Override
     public boolean isEmpty() {
-        return false;
-    }
-
-
-
-
-    @Override
-    public T top() throws EmptyStackException {
-        return null;
+        boolean isExists = false;
+        if(head !=null){
+            isExists = true;
+        }
+        return isExists;
     }
 
     @Override
-    public T pop() throws EmptyStackException {
-        return;
+    public Actions<T> top() throws EmptyStackException {
+        return tail;
+    }
+
+    @Override
+    public Actions<T> pop() throws EmptyStackException {
+
     }
 
 
