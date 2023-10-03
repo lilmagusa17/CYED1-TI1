@@ -1,4 +1,4 @@
-package model;
+package util;
 
 public class HashNode<K, V extends Comparable<V>> {
     private K key;

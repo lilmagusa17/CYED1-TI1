@@ -1,3 +1,5 @@
+package util;
+
 class MaxHeap<T extends Comparable<T>> {
         // declare array and variables
         private T[] heapData;

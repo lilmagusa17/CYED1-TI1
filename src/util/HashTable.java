@@ -1,5 +1,6 @@
-package model;
+package util;
 
+import util.HashNode;
 import util.IHash;
 
 public class HashTable<K, V extends Comparable<V>> implements IHash<K, V> {
