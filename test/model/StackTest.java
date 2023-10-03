@@ -11,8 +11,6 @@ public class StackTest {
 
     public void setUp1(){
         stackActions = new Stack<>();
-
-
     }
 
     public void setUp2(){
@@ -47,9 +45,6 @@ public class StackTest {
         setUp1();
         boolean isEmpty = stackActions.isEmpty();
         assertTrue(isEmpty);
-
-
-
     }
 
     @Test
@@ -63,22 +58,45 @@ public class StackTest {
     @Test
     public void popActionInStack(){
         setUp2();
-        boolean isExceptionThrow = false;
+        
+       /* boolean isExceptionThrow = false;
 
         try{
             stackActions.pop();
         }catch (EmptyStackException e){
             isExceptionThrow = true;
         }
-        assertFalse(isExceptionThrow);
+        assertFalse(isExceptionThrow);*/
+
+        assertEquals(stackActions.getTail(), stackActions.pop());
 
 
 
     }
 
     @Test
-    public void notPopActionInStack(){
+    public void popActionInStackEmpty(){
+        setUp1();
+        boolean isExceptionThrow = false;
+
+        try {
+            stackActions.pop();
+        }catch (EmptyStackException e){
+            isExceptionThrow = true;
+        }
+        assertTrue(isExceptionThrow);
+
+    }
+
+    @Test
+    public void topActionInStack(){
         setUp2();
+        assertEquals(stackActions.getTail(), stackActions.top());
+    }
+
+    @Test
+    public void topActionInStackEmpty(){
+        setUp1();
         boolean isExceptionThrow = false;
 
         try {

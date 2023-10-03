@@ -50,26 +50,36 @@ public class Stack<T> implements StackInterface<T> {
 
     @Override
     public boolean isEmpty() {
-        boolean isExists = false;
+        boolean isExists = true;
         if(head !=null){
-            isExists = true;
+            isExists = false;
         }
         return isExists;
     }
 
     @Override
     public Actions<T> top() throws EmptyStackException {
+        if(head == null){
+            throw new EmptyStackException();
+        }
         return tail;
     }
 
     @Override
     public Actions<T> pop() throws EmptyStackException {
-        Actions<T> removeTail = tail;
-        Actions<T> prevTail = tail.getPrev();
+        Actions<T> removeTail;
+        Actions<T> prevTail;
 
-        tail = null;
+        if (head == null){
+            throw new EmptyStackException();
+        }else {
+            removeTail = tail;
+            prevTail = tail.getPrev();
+            setTail(null);
 
-        tail=prevTail;
+            tail=prevTail;
+        }
+
 
         return removeTail;
     }
@@ -78,12 +88,13 @@ public class Stack<T> implements StackInterface<T> {
         return head;
     }
 
-    public void setHead(Actions<T> head) {
-        this.head = head;
-    }
 
     public Actions<T> getTail() {
         return tail;
+    }
+
+    public void setHead(Actions<T> head) {
+        this.head = head;
     }
 
     public void setTail(Actions<T> tail) {
