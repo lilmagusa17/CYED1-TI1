@@ -9,7 +9,7 @@ public class HashNodeTest {
         assertEquals(1, hashNode.getKey());
         assertEquals("Hola", hashNode.getValue());
         assertNull(hashNode.getNext());
-        assertNull(hashNode.getPrevius());
+        assertNull(hashNode.getPrevious());
         assertEquals(1, hashNode.getSize());
     }
 
@@ -56,15 +56,15 @@ public class HashNodeTest {
     @Test
     public void testGetPrevius() {
         HashNode<Integer, String> hashNode = new HashNode<Integer, String>(1, "Hola");
-        assertNull(hashNode.getPrevius());
+        assertNull(hashNode.getPrevious());
     }
 
     @Test
     public void testSetPrevius() {
         HashNode<Integer, String> hashNode = new HashNode<Integer, String>(1, "Hola");
         HashNode<Integer, String> hashNode2 = new HashNode<Integer, String>(2, "Adios");
-        hashNode.setPrevius(hashNode2);
-        assertEquals(hashNode2, hashNode.getPrevius());
+        hashNode.setPrevious(hashNode2);
+        assertEquals(hashNode2, hashNode.getPrevious());
 
     }
 
