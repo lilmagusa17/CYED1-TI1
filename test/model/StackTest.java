@@ -1,6 +1,9 @@
 package model;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.EmptyStackException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StackTest {
@@ -36,6 +39,54 @@ public class StackTest {
         stackActions.push(node);
 
         assertEquals(stackActions.getTail(),node);
+
+    }
+
+    @Test
+    public void isEmptyStack(){
+        setUp1();
+        boolean isEmpty = stackActions.isEmpty();
+        assertTrue(isEmpty);
+
+
+
+    }
+
+    @Test
+    public void notIsEmptyStack(){
+        setUp2();
+        boolean isEmpty = stackActions.isEmpty();
+        assertFalse(isEmpty);
+
+    }
+
+    @Test
+    public void popActionInStack(){
+        setUp2();
+        boolean isExceptionThrow = false;
+
+        try{
+            stackActions.pop();
+        }catch (EmptyStackException e){
+            isExceptionThrow = true;
+        }
+        assertFalse(isExceptionThrow);
+
+
+
+    }
+
+    @Test
+    public void notPopActionInStack(){
+        setUp2();
+        boolean isExceptionThrow = false;
+
+        try {
+            stackActions.pop();
+        }catch (EmptyStackException e){
+            isExceptionThrow = true;
+        }
+        assertTrue(isExceptionThrow);
 
     }
 }
