@@ -64,12 +64,14 @@ public class Stack<T> implements StackInterface<T> {
 
     @Override
     public Actions<T> pop() throws EmptyStackException {
+        Actions<T> removeTail = tail;
+        Actions<T> prevTail = tail.getPrev();
 
+        tail = null;
+
+        tail=prevTail;
+
+        return removeTail;
     }
-
-
-    @Override
-    public int search(T item) throws EmptyStackException {
-        return 0;
-    }
+    
 }

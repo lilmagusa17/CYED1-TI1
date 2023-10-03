@@ -15,6 +15,5 @@ public interface StackInterface<T> {
 
     public Actions<T> pop() throws EmptyStackException;
 
-    public int search(T item) throws EmptyStackException;
 
 }
