@@ -4,13 +4,13 @@ import util.StackInterface;
 
 import java.util.EmptyStackException;
 
-public class Stack<T> implements StackInterface<T> {
+public class Stack<T,K, V extends Comparable<V>> implements StackInterface<T,K,V> {
 
-    private Actions<T> head;
-    private Actions<T> tail;
+    private Actions<T,K, V> head;
+    private Actions<T, K, V> tail;
 
     @Override
-    public void push(Actions<T>node) throws EmptyStackException{
+    public void push(Actions<T,K,V>node) throws EmptyStackException{
 
 
         // list is empty
@@ -27,25 +27,7 @@ public class Stack<T> implements StackInterface<T> {
             this.tail = node;
         }
     }
-
-//    @Override
-//    public void push(T typeAction, T taskOriginal, T taskModified) throws EmptyStackException{
-//        Actions<T> node = new Actions<>(typeAction,taskOriginal,taskModified);
-//
-//        // list is empty
-//        if(this.head == null){
-//            this.head = node;
-//            this.tail = node;
-//        }
-//        // added to first position
-//        else {
-//            // connect node
-//            this.tail.setNext(node);
-//            node.setPrev(this.tail);
-//            // update
-//            this.tail = node;
-//        }
-//    }
+    
 
 
     @Override
@@ -58,7 +40,7 @@ public class Stack<T> implements StackInterface<T> {
     }
 
     @Override
-    public Actions<T> top() throws EmptyStackException {
+    public Actions<T,K, V> top() throws EmptyStackException {
         if(head == null){
             throw new EmptyStackException();
         }
@@ -66,9 +48,9 @@ public class Stack<T> implements StackInterface<T> {
     }
 
     @Override
-    public Actions<T> pop() throws EmptyStackException {
-        Actions<T> removeTail;
-        Actions<T> prevTail;
+    public Actions<T,K, V> pop() throws EmptyStackException {
+        Actions<T, K, V> removeTail;
+        Actions<T, K, V> prevTail;
 
         if (head == null){
             throw new EmptyStackException();
@@ -84,20 +66,20 @@ public class Stack<T> implements StackInterface<T> {
         return removeTail;
     }
 
-    public Actions<T> getHead() {
+    public Actions<T, K, V> getHead() {
         return head;
     }
 
 
-    public Actions<T> getTail() {
+    public Actions<T,K, V> getTail() {
         return tail;
     }
 
-    public void setHead(Actions<T> head) {
+    public void setHead(Actions<T,K, V> head) {
         this.head = head;
     }
 
-    public void setTail(Actions<T> tail) {
+    public void setTail(Actions<T,K, V> tail) {
         this.tail = tail;
     }
 }

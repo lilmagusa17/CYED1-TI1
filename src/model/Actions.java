@@ -1,38 +1,38 @@
 package model;
 
-public class Actions<T> {
+public class Actions<T, K, V extends Comparable<V>> {
 
-    private Actions<T> next;
-    private Actions<T> prev;
+    private Actions<T, K, V> next;
+    private Actions<T, K, V> prev;
 
     private T typeAction;
-    private T taskOriginal;
-    private T taskModified;
+    private HashNode<K,V> taskOriginal;
+    private HashNode<K,V> taskModified;
 
-    public Actions(T typeAction, T taskOriginal) {
+    public Actions(T typeAction, HashNode<K,V> taskOriginal) {
         this.typeAction = typeAction;
         this.taskOriginal = taskOriginal;
     }
 
-    public Actions(T typeAction, T taskOriginal, T taskModified) {
+    public Actions(T typeAction, HashNode<K,V> taskOriginal, HashNode<K,V> taskModified) {
         this.typeAction = typeAction;
         this.taskOriginal = taskOriginal;
         this.taskModified = taskModified;
     }
 
-    public Actions<T> getNext() {
+    public Actions<T,K, V> getNext() {
         return next;
     }
 
-    public void setNext(Actions<T> next) {
+    public void setNext(Actions<T, K, V> next) {
         this.next = next;
     }
 
-    public Actions<T> getPrev() {
+    public Actions<T, K, V> getPrev() {
         return prev;
     }
 
-    public void setPrev(Actions<T> prev) {
+    public void setPrev(Actions<T, K, V> prev) {
         this.prev = prev;
     }
 
@@ -44,19 +44,19 @@ public class Actions<T> {
         this.typeAction = typeAction;
     }
 
-    public T getTaskOriginal() {
+    public HashNode<K,V> getTaskOriginal() {
         return taskOriginal;
     }
 
-    public void setTaskOriginal(T taskOriginal) {
+    public void setTaskOriginal(HashNode<K,V> taskOriginal) {
         this.taskOriginal = taskOriginal;
     }
 
-    public T getTaskModified() {
+    public HashNode<K,V> getTaskModified() {
         return taskModified;
     }
 
-    public void setTaskModified(T taskModified) {
+    public void setTaskModified(HashNode<K,V> taskModified) {
         this.taskModified = taskModified;
     }
 
