@@ -1,5 +1,7 @@
 package model;
 
+import util.HashNode;
+
 public class Actions<T, K, V extends Comparable<V>> {
 
     private Actions<T, K, V> next;

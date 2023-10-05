@@ -1,13 +1,14 @@
 package model;
 
 import org.junit.jupiter.api.Test;
+import util.Stack;
 
 import java.util.EmptyStackException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StackTest {
-    private Stack<String, String, String>stackActions;
+    private Stack<String, String, String> stackActions;
 
     public void setUp1(){
         stackActions = new Stack<>();

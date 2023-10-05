@@ -1,5 +1,6 @@
-package model;
+package util;
 
+import model.Actions;
 import util.StackInterface;
 
 import java.util.EmptyStackException;
