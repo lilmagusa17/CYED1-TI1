@@ -1,7 +1,7 @@
-package model;
+package util;
 
 import org.junit.jupiter.api.Test;
-import util.Stack;
+import model.Actions;
 
 import java.util.EmptyStackException;
 
