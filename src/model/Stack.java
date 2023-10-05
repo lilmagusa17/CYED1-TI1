@@ -27,7 +27,7 @@ public class Stack<T,K, V extends Comparable<V>> implements StackInterface<T,K,V
             this.tail = node;
         }
     }
-    
+
 
 
     @Override
