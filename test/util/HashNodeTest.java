@@ -1,4 +1,4 @@
-package model;
+package util;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import util.HashNode;

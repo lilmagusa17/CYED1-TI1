@@ -1,4 +1,4 @@
-package model;
+package util;
 
 import org.junit.jupiter.api.Test;
 import util.HashTable;
