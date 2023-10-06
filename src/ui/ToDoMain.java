@@ -118,7 +118,7 @@ public class ToDoMain {
         System.out.println("\tPriority: (true/false)");
         boolean priority = sc.nextBoolean();
         con.addTask("title", "description", stringtoCalendar("12/12/2021"), true);
-        System.out.println(con.isEmpty()); 
+        System.out.println(con.isEmpty());
 
     }
 
