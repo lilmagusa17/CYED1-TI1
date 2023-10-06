@@ -2,6 +2,8 @@ package ui;
 
 import model.ToDoManager;
 
+import java.util.Calendar;
+
 /**
  * The main class for the ToDoList application.
  *
@@ -85,16 +87,57 @@ public class ToDoMain {
     public void answerOption(int userOption) {
         switch(userOption) {
             case 0:
-                //System.out.println(BLUE + "Thanks for playing, see you soon!" + BLUE + RESET);
                 break;
-            case 1:
-
+            case 1: addTask();
                 break;
             case 2:
-                //seeScores();
+                modifyTask();
                 break;
+
+            case 3:
+                deleteTask();
+                break;
+
+            default:
+                System.out.println(CYAN + "Please enter a valid option" + RESET);
+                break;
+
         }
 
+    }
+
+    public static void addTask() {
+        //does this require exception handling?
+        System.out.println(PURPLE + "\tPlease enter the following information: " + RESET);
+        System.out.println("\tTitle: ");
+        String title = sc.nextLine();
+        System.out.println("\tDescription: ");
+        String description = sc.nextLine();
+        System.out.println("\tDate: (dd/mm/yyyy)");
+        String date = sc.nextLine();
+        System.out.println("\tPriority: (true/false)");
+        boolean priority = sc.nextBoolean();
+        con.addTask("title", "description", stringtoCalendar("12/12/2021"), true);
+        System.out.println(con.isEmpty());
+
+    }
+
+    public static void modifyTask(){
+
+    }
+
+    public static void deleteTask(){
+
+    }
+
+    private static Calendar stringtoCalendar(String date) {
+        Calendar calendar = Calendar.getInstance();
+        String[] dateArray = date.split("/");
+        int day = Integer.parseInt(dateArray[0]);
+        int month = Integer.parseInt(dateArray[1]);
+        int year = Integer.parseInt(dateArray[2]);
+        calendar.set(year, month, day);
+        return calendar;
     }
 
 

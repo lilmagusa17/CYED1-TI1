@@ -1,5 +1,7 @@
 package util;
 
+import exception.HashEmptyException;
+import exception.NonexistentKeyException;
 import org.junit.jupiter.api.Test;
 import util.HashTable;
 
@@ -45,7 +47,7 @@ class HashTableTest {
     }
 
     @Test
-    public void deleteEmptyHashTest(){
+    public void deleteEmptyHashTest() throws NonexistentKeyException, HashEmptyException {
         //setup test
         setupScenary1();
 
