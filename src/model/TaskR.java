@@ -9,7 +9,7 @@ public class TaskR implements Comparable<TaskR> {
     private boolean priority;
     private String id;
 
-    public TaskR(String title, String description, Calendar date, boolean priority, String id) {
+    public TaskR(String title, String description, Calendar date, boolean priority) {
         this.title = title;
         this.description = description;
         this.limitDate = date;

@@ -1,5 +1,7 @@
 package util;
 
+import exception.HashEmptyException;
+import exception.NonexistentKeyException;
 import util.HashNode;
 import util.IHash;
 
@@ -33,26 +35,26 @@ public class HashTable<K, V extends Comparable<V>> implements IHash<K, V> {
     }
 
     @Override
-    public boolean remove(K key) {
+    public boolean remove(K key) throws HashEmptyException, NonexistentKeyException {
         int index = hashFunction(key);
-
-        if (isEmpty()) {
-            return false;
-        } else {
-            if (list[index] == null) {
-                return false;
-            } else {
-                if (list[index].getNext() == null) {
+        boolean removed;
+        if(isEmpty() ){
+            throw new HashEmptyException("");
+        }else {
+            if(list[index] == null) {
+                throw new NonexistentKeyException("");
+            }else {
+                if(list[index].getNext() == null) {
                     list[index] = null;
                     size--;
-                    return true;
-                } else {
+                    removed = true;
+                }else {
                     list[index].removeLast();
-                    size--;
-                    return true;
+                    removed = true;
                 }
             }
         }
+        return removed;
     }
 
     @Override

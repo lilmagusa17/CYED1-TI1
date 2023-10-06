@@ -1,19 +1,13 @@
 package model;
 
+import exception.HashEmptyException;
+import exception.NonexistentKeyException;
 import util.HashTable;
 
 import java.util.Calendar;
 
 public class ToDoManager {
 
-    /*
-    FR1. The program must allow to add tasks
-    The program must allow to add the tasks and reminders
-    Almacenar tareas y recordatorios: Utiliza una tabla hash para almacenar
-    tareas y recordatorios. La clave podría ser un identificador único y el valor
-    podría ser la información de la tarea/recordatorio. Cada entrada en la tabla hash
-    podría tener la siguiente información: título, descripción, fecha límite, prioridad, etc.
-    */
     private HashTable<String, TaskR> tasks;
 
     public ToDoManager() {
@@ -21,18 +15,31 @@ public class ToDoManager {
 
     }
 
-    public void addTask(String title, String description, Calendar date, boolean priority, String id) {
-        TaskR task = new TaskR(title, description, date, priority, id);
+    public void addTask(String title, String description, Calendar date, boolean priority) {
+        TaskR task = new TaskR(title, description, date, priority);
+        String id = task.getId();
         tasks.add(id, task);
+
+
     }
 
 
-    public boolean removeTask(String id) {
-        return tasks.remove(id);
+    public boolean removeTask(String id) throws NonexistentKeyException, HashEmptyException {
+
+        boolean removed = false;
+        if(!tasks.isEmpty()){
+            removed = tasks.remove(id);
+        }
+        return removed;
+
     }
 
-    public TaskR searchTask(String id) {
-        return tasks.search(id);
+    public TaskR searchTask(String id) throws Exception{
+        try{
+            return tasks.search(id);
+        } catch (Exception e) {
+            throw new Exception("The task does not exist");
+        }
     }
 
     public boolean isEmpty() {
