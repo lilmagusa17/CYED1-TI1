@@ -5,14 +5,32 @@ import util.StackInterface;
 
 import java.util.EmptyStackException;
 
-public class Stack<T,K, V extends Comparable<V>> implements StackInterface<T,K,V> {
+public class Stack<T,K, V> implements StackInterface<T,K,V> {
 
     private Actions<T,K, V> head;
     private Actions<T, K, V> tail;
 
     @Override
-    public void push(Actions<T,K,V>node) throws EmptyStackException{
+    public void push(T typeAction, K id, V taskOriginal) throws EmptyStackException{
+        Actions<T,K,V> node = new Actions<>(typeAction, id, taskOriginal);
 
+        // list is empty
+        if(this.head == null){
+            this.head = node;
+            this.tail = node;
+        }
+        // added to first position
+        else {
+            // connect node
+            this.tail.setNext(node);
+            node.setPrev(this.tail);
+            // update
+            this.tail = node;
+        }
+    }
+
+    public void push(T typeAction, K id, V taskOriginal, V taskModified) throws EmptyStackException{
+        Actions<T,K,V> node = new Actions<>(typeAction, id, taskOriginal, taskModified);
 
         // list is empty
         if(this.head == null){

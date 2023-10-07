@@ -2,27 +2,30 @@ package model;
 
 import util.HashNode;
 
-public class Actions<T, K, V extends Comparable<V>> {
+public class Actions<T, K, V> {
 
     private Actions<T, K, V> next;
     private Actions<T, K, V> prev;
 
     private T typeAction;
-    private HashNode<K,V> taskOriginal;
-    private HashNode<K,V> taskModified;
 
-    public Actions(T typeAction, HashNode<K,V> taskOriginal) {
+    private K key;
+    private V taskOriginal;
+    private V taskModified;
+
+    public Actions(T typeAction, K key, V taskOriginal) {
         this.typeAction = typeAction;
+        this.key = key;
         this.taskOriginal = taskOriginal;
     }
 
-    public Actions(T typeAction, HashNode<K,V> taskOriginal, HashNode<K,V> taskModified) {
+    public Actions(T typeAction, K key, V taskOriginal, V taskModified) {
         this.typeAction = typeAction;
         this.taskOriginal = taskOriginal;
         this.taskModified = taskModified;
     }
 
-    public Actions<T,K, V> getNext() {
+    public Actions<T, K, V> getNext() {
         return next;
     }
 
@@ -46,21 +49,27 @@ public class Actions<T, K, V extends Comparable<V>> {
         this.typeAction = typeAction;
     }
 
-    public HashNode<K,V> getTaskOriginal() {
+    public K getKey() {
+        return key;
+    }
+
+    public void setKey(K key) {
+        this.key = key;
+    }
+
+    public V getTaskOriginal() {
         return taskOriginal;
     }
 
-    public void setTaskOriginal(HashNode<K,V> taskOriginal) {
+    public void setTaskOriginal(V taskOriginal) {
         this.taskOriginal = taskOriginal;
     }
 
-    public HashNode<K,V> getTaskModified() {
+    public V getTaskModified() {
         return taskModified;
     }
 
-    public void setTaskModified(HashNode<K,V> taskModified) {
+    public void setTaskModified(V taskModified) {
         this.taskModified = taskModified;
     }
-
-
 }

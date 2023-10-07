@@ -16,28 +16,26 @@ public class StackTest {
 
     public void setUp2(){
         stackActions = new Stack<>();
-        stackActions.push(new Actions<>("addTask", new HashNode<>("1", "Studying discreetly")));
-        stackActions.push(new Actions<>("deleteTask", new HashNode<>("2", "Studying discreetly")));
-        stackActions.push(new Actions<>("addTask", new HashNode<>("3", "Studying all day")));
-        stackActions.push(new Actions<>("modifiedTask", new HashNode<>("3", "Studying all day"), new HashNode<>("3", "Going to the gym")));
+        stackActions.push("addTask", "1", "Studying discreetly");
+        stackActions.push("deleteTask","2", "Studying discreetly");
+        stackActions.push("addTask", "3", "Studying all day");
+        stackActions.push("modifiedTask", "3", "Studying all day", "Going to the gym");
     }
 
     @Test
     public void pushActionInStackEmpty(){
         setUp1();
-        Actions<String, String, String>node = new Actions<>("addTask", new HashNode<>("1", "making an integrator"));
-        stackActions.push(node);
+        stackActions.push("addTask", "1", "making an integrator");
 
-        assertEquals(stackActions.getHead(),node);
+        assertEquals(stackActions.getHead(),stackActions.top());
 
     }
     @Test
     public void pushActionNotEmptyStack(){
         setUp2();
-        Actions<String, String, String>node = new Actions<>("modifiedTask", new HashNode<>("1", "making an integrator"), new HashNode<>("1", "Taking my dogs out"));
-        stackActions.push(node);
+        stackActions.push("modifiedTask", "1", "making an integrator");
 
-        assertEquals(stackActions.getTail(),node);
+        assertEquals(stackActions.getTail(), stackActions.top());
 
     }
 

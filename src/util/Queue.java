@@ -1,8 +1,8 @@
-package util;
+/*package util;
 
 import util.QueueInt;
 
-import java.util.EmptyQueueException;
+//import java.util.EmptyQueueException;
 
 public class Queue<T> implements QueueInt<T> {
 
@@ -70,4 +70,4 @@ public class Queue<T> implements QueueInt<T> {
     public int size() {
         return size;
     }
-}
+}*/
