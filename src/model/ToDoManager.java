@@ -53,7 +53,7 @@ public class ToDoManager {
         return stackActions.isEmpty();
     }
 
-    
+
     public boolean isEmpty() {
         return tasks.isEmpty();
     }

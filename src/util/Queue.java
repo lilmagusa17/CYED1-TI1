@@ -1,4 +1,4 @@
-/*package util;
+package util;
 
 import util.QueueInt;
 
@@ -70,4 +70,4 @@ public class Queue<T> implements QueueInt<T> {
     public int size() {
         return size;
     }
-}*/
+}
