@@ -107,22 +107,93 @@ public class ToDoMain {
     }
 
     public static void addTask() {
-        //does this require exception handling?
-        System.out.println(PURPLE + "\tPlease enter the following information: " + RESET);
+        System.out.println(PURPLE + "\t\t~~ ADD TASK ~~" + RESET);
+        System.out.println( "\tPlease enter the following information: \n");
         System.out.println("\tTitle: ");
         String title = sc.nextLine();
         System.out.println("\tDescription: ");
         String description = sc.nextLine();
-        System.out.println("\tDate: (dd/mm/yyyy)");
+        System.out.println("\tDue date: (dd/mm/yyyy)");
         String date = sc.nextLine();
-        System.out.println("\tPriority: (true/false)");
-        boolean priority = sc.nextBoolean();
-        con.addTask("title", "description", stringtoCalendar("12/12/2021"), true);
+        System.out.println("\tIs this task a priority? 1 Yes/2 No");
+        int priority = sc.nextInt();
+        sc.nextLine();
+        System.out.println("\tPlease enter the id of the task: ");
+        String id = sc.nextLine();
+
+        con.addTask(title, description, stringtoCalendar(date), priority, id);
         System.out.println(con.isEmpty());
 
     }
 
     public static void modifyTask(){
+
+        try {
+            System.out.println(PURPLE + "\tMODIFY TASK" + RESET);
+            System.out.println("\tPlease enter the id of the task you want to modify: ");
+            String id = sc.nextLine();
+            System.out.println("\tDo you want to modify all the information of the task? (1. Yes/2. No)");
+            int option = sc.nextInt();
+            sc.nextLine();
+
+            if (option == 1) {
+                System.out.println("\tPlease enter the following information: ");
+                System.out.println("\tTitle: ");
+                String title = sc.nextLine();
+                System.out.println("\tDescription: ");
+                String description = sc.nextLine();
+                System.out.println("\tDate: (dd/mm/yyyy)");
+                String date = sc.nextLine();
+                System.out.println("\tPriority: (true/false)");
+                boolean priority = sc.nextBoolean();
+                con.modifyTask(id, title, description, stringtoCalendar(date), priority);
+
+            } else if (option == 2) {
+
+                System.out.println("\tWhat do you want to modify?");
+                System.out.println("\t1. Title");
+                System.out.println("\t2. Description");
+                System.out.println("\t3. Date");
+                System.out.println("\t4. Priority");
+                int option2 = sc.nextInt();
+                sc.nextLine();
+
+                switch (option2) {
+                    case 1:
+                        System.out.println("\tPlease enter the new title: ");
+                        String title = sc.nextLine();
+                        con.searchTask(id).setTitle(title);
+                        break;
+
+                    case 2:
+                        System.out.println("\tPlease enter the new description: ");
+                        String description = sc.nextLine();
+                        con.searchTask(id).setDescription(description);
+                        break;
+
+                    case 3:
+                        System.out.println("\tPlease enter the new date: ");
+                        String date = sc.nextLine();
+                        con.searchTask(id).setLimitDate(stringtoCalendar(date));
+                        break;
+
+                    case 4:
+                        System.out.println("\tPlease enter the new priority: ");
+                        boolean priority = sc.nextBoolean();
+                        con.searchTask(id).setPriority(priority);
+                        break;
+
+                    default:
+                        System.out.println("\tPlease enter a valid option");
+                        break;
+
+                }
+            } else {
+                System.out.println("Please enter a valid option");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 

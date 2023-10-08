@@ -17,12 +17,27 @@ public class ToDoManager {
         stackActions = new Stack<String, String, TaskR>();
     }
 
-    public void addTask(String title, String description, Calendar date, boolean priority) {
-        TaskR task = new TaskR(title, description, date, priority);
-        String id = task.getId();
+    public void addTask(String title, String description, Calendar date, int priority, String id) {
+        boolean priorityB = false;
+        switch (priority){
+            case 1: priorityB = true;
+            break;
+            case 2: priorityB = false;
+            break;
+
+        }
+        TaskR task = new TaskR(title, description, date, priorityB, id);
         tasks.add(id, task);
         pushAction("addTask", id, task);
 
+    }
+
+    public void modifyTask(String id, String title, String description, Calendar date, boolean priority) throws Exception {
+        TaskR task = searchTask(id);
+        task.setTitle(title);
+        task.setDescription(description);
+        task.setLimitDate(date);
+        task.setPriority(priority);
     }
 
 
