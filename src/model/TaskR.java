@@ -9,28 +9,15 @@ public class TaskR implements Comparable<TaskR> {
     private boolean priority;
     private String id;
 
-    public TaskR(String title, String description, Calendar date, boolean priority) {
+    public TaskR(String title, String description, Calendar date, boolean priority, String id) {
         this.title = title;
         this.description = description;
         this.limitDate = date;
         this.priority = priority;
-        this.id = initId();
+        this.id = id;
     }
 
-    /**
-     * This method auto-generates an id for the user
-     * @return the id
-     */
-    public String initId(){
-        StringBuilder id = new StringBuilder();
-        for(int i = 0; i < 3; i++){
-            id.append((char) (Math.random() * 26 + 'A'));
-        }
-        for(int i = 0; i < 3; i++){
-            id.append((int) (Math.random() * 10));
-        }
-        return id.toString();
-    }
+
 
     public String getTitle() {
         return title;
