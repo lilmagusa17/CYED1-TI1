@@ -1,6 +1,8 @@
 package model;
 
 import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class TaskR implements Comparable<TaskR> {
     private String title;
@@ -8,6 +10,7 @@ public class TaskR implements Comparable<TaskR> {
     private Calendar limitDate;
     private boolean priority;
     private String id;
+    private DateFormat formatter;
 
     public TaskR(String title, String description, Calendar date, boolean priority, String id) {
         this.title = title;
@@ -15,6 +18,11 @@ public class TaskR implements Comparable<TaskR> {
         this.limitDate = date;
         this.priority = priority;
         this.id = id;
+        this.formatter = new SimpleDateFormat("dd/MM/yyyy");
+    }
+
+    public String getLimitDateFormatted() {
+        return formatter.format(this.limitDate.getTime());
     }
 
 
@@ -61,7 +69,7 @@ public class TaskR implements Comparable<TaskR> {
 
     @Override
     public String toString() {
-        return "TaskR{" + "title=" + title + ", description=" + description + ", date=" + limitDate + ", priority=" + priority + ", id=" + id + '}';
+        return  " Title=" + title + "\n Description=" + description + "\n Date=" + getLimitDateFormatted() + "\n Priority=" + priority + "\n id=" + id ;
     }
 
 

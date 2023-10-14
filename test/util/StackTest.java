@@ -8,7 +8,7 @@ import java.util.EmptyStackException;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StackTest {
-    private Stack<String, String, String> stackActions;
+    private Stack<String, String> stackActions;
 
     public void setUp1(){
         stackActions = new Stack<>();
@@ -16,16 +16,16 @@ public class StackTest {
 
     public void setUp2(){
         stackActions = new Stack<>();
-        stackActions.push("addTask", "1", "Studying discreetly");
-        stackActions.push("deleteTask","2", "Studying discreetly");
-        stackActions.push("addTask", "3", "Studying all day");
-        stackActions.push("modifiedTask", "3", "Studying all day", "Going to the gym");
+        stackActions.push("addTask",  "Studying discreetly");
+        stackActions.push("deleteTask", "Studying discreetly");
+        stackActions.push("addTask", "Studying all day");
+        stackActions.push("modifiedTask", "Studying all day", "Going to the gym");
     }
 
     @Test
     public void pushActionInStackEmpty(){
         setUp1();
-        stackActions.push("addTask", "1", "making an integrator");
+        stackActions.push("addTask", "making an integrator");
 
         assertEquals(stackActions.getHead(),stackActions.top());
 
@@ -33,7 +33,7 @@ public class StackTest {
     @Test
     public void pushActionNotEmptyStack(){
         setUp2();
-        stackActions.push("modifiedTask", "1", "making an integrator");
+        stackActions.push("modifiedTask", "Studying all day", "making an integrator");
 
         assertEquals(stackActions.getTail(), stackActions.top());
 

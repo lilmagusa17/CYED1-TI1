@@ -2,42 +2,41 @@ package model;
 
 import util.HashNode;
 
-public class Actions<T, K, V> {
+public class Actions<T, V> {
 
-    private Actions<T, K, V> next;
-    private Actions<T, K, V> prev;
+    private Actions<T, V> next;
+    private Actions<T, V> prev;
 
     private T typeAction;
 
-    private K key;
+
     private V taskOriginal;
     private V taskModified;
 
-    public Actions(T typeAction, K key, V taskOriginal) {
+    public Actions(T typeAction,  V taskOriginal) {
         this.typeAction = typeAction;
-        this.key = key;
         this.taskOriginal = taskOriginal;
     }
 
-    public Actions(T typeAction, K key, V taskOriginal, V taskModified) {
+    public Actions(T typeAction, V taskOriginal, V taskModified) {
         this.typeAction = typeAction;
         this.taskOriginal = taskOriginal;
         this.taskModified = taskModified;
     }
 
-    public Actions<T, K, V> getNext() {
+    public Actions<T, V> getNext() {
         return next;
     }
 
-    public void setNext(Actions<T, K, V> next) {
+    public void setNext(Actions<T, V> next) {
         this.next = next;
     }
 
-    public Actions<T, K, V> getPrev() {
+    public Actions<T, V> getPrev() {
         return prev;
     }
 
-    public void setPrev(Actions<T, K, V> prev) {
+    public void setPrev(Actions<T, V> prev) {
         this.prev = prev;
     }
 
@@ -49,13 +48,6 @@ public class Actions<T, K, V> {
         this.typeAction = typeAction;
     }
 
-    public K getKey() {
-        return key;
-    }
-
-    public void setKey(K key) {
-        this.key = key;
-    }
 
     public V getTaskOriginal() {
         return taskOriginal;

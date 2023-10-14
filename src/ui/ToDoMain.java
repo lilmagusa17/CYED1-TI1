@@ -65,12 +65,13 @@ public class ToDoMain {
                                  "\tPlease choose an option: \n\n"+ RESET+
                                  "\t(1) Add task / reminder\n" +
                                  "\t(2) Modify task / reminder\n" +
-                                 "\t(3) Delete task / reminder\n\n" +
+                                 "\t(3) Delete task / reminder\n" +
+                                 "\t(4) Undo action \n\n" +
 
                 "\t(0) To exit"
         );
         input = sc.nextInt();
-        if(input<0 || input>2){
+        if(input<0 || input>5){
             System.out.println(CYAN + "Please enter a valid option" + RESET);
             input=sc.nextInt();
         }
@@ -98,6 +99,9 @@ public class ToDoMain {
                 deleteTask();
                 break;
 
+            case 4:
+                undoAction();
+                break;
             default:
                 System.out.println(CYAN + "Please enter a valid option" + RESET);
                 break;
@@ -116,71 +120,97 @@ public class ToDoMain {
         System.out.println("\tDue date: (dd/mm/yyyy)");
         String date = sc.nextLine();
         System.out.println("\tIs this task a priority? 1 Yes/2 No");
-        int priority = sc.nextInt();
+        int priorityOP = sc.nextInt();
+        boolean priority = false;
+        switch (priorityOP){
+            case 1:
+                priority = true;
+                break;
+        }
         sc.nextLine();
         System.out.println("\tPlease enter the id of the task: ");
         String id = sc.nextLine();
 
-        con.addTask(title, description, stringtoCalendar(date), priority, id);
+        con.addTask(title, description, stringtoCalendar(date), priority, id, true);
         System.out.println(con.isEmpty());
 
     }
 
     public static void modifyTask(){
+        String id = "";
+        int option = 0;
+        int option2 = 0;
+        String title = "";
+        String description = "";
+        String date = "";
+        boolean priority = false;
 
         try {
             System.out.println(PURPLE + "\tMODIFY TASK" + RESET);
             System.out.println("\tPlease enter the id of the task you want to modify: ");
-            String id = sc.nextLine();
+            id = sc.nextLine();
             System.out.println("\tDo you want to modify all the information of the task? (1. Yes/2. No)");
-            int option = sc.nextInt();
+            option = sc.nextInt();
             sc.nextLine();
 
             if (option == 1) {
                 System.out.println("\tPlease enter the following information: ");
                 System.out.println("\tTitle: ");
-                String title = sc.nextLine();
+
+                title = sc.nextLine();
                 System.out.println("\tDescription: ");
-                String description = sc.nextLine();
+                description = sc.nextLine();
                 System.out.println("\tDate: (dd/mm/yyyy)");
-                String date = sc.nextLine();
-                System.out.println("\tPriority: (true/false)");
-                boolean priority = sc.nextBoolean();
-                con.modifyTask(id, title, description, stringtoCalendar(date), priority);
+                date = sc.next();
+                System.out.println("\tPriority: (1. true/ 2. false)");
+                option = sc.nextInt();
+                if(option==1){
+                    priority = true;
+                }
+                con.modifyTask(id, title, description, stringtoCalendar(date), priority, true);
 
             } else if (option == 2) {
+
 
                 System.out.println("\tWhat do you want to modify?");
                 System.out.println("\t1. Title");
                 System.out.println("\t2. Description");
                 System.out.println("\t3. Date");
                 System.out.println("\t4. Priority");
-                int option2 = sc.nextInt();
+                option2 = sc.nextInt();
                 sc.nextLine();
 
                 switch (option2) {
                     case 1:
                         System.out.println("\tPlease enter the new title: ");
-                        String title = sc.nextLine();
-                        con.searchTask(id).setTitle(title);
+                        title = sc.nextLine();
+                        con.modifyTask(1,id, title, con.searchTask(id).getDescription(), con.searchTask(id).getLimitDate(), con.searchTask(id).getPriority(), true);
                         break;
 
                     case 2:
                         System.out.println("\tPlease enter the new description: ");
-                        String description = sc.nextLine();
-                        con.searchTask(id).setDescription(description);
+                        sc.nextLine();
+                        description = sc.nextLine();
+                        con.modifyTask(2,id, con.searchTask(id).getTitle(), description, con.searchTask(id).getLimitDate(), con.searchTask(id).getPriority(), true);
+
                         break;
 
                     case 3:
                         System.out.println("\tPlease enter the new date: ");
-                        String date = sc.nextLine();
-                        con.searchTask(id).setLimitDate(stringtoCalendar(date));
+                        date = sc.next();
+                        con.modifyTask(3,id, con.searchTask(id).getDescription(), con.searchTask(id).getDescription(), stringtoCalendar(date), con.searchTask(id).getPriority(), true);
+
+
                         break;
 
                     case 4:
                         System.out.println("\tPlease enter the new priority: ");
-                        boolean priority = sc.nextBoolean();
-                        con.searchTask(id).setPriority(priority);
+                        option2 = sc.nextInt();
+                        if (option2 == 1){
+                            priority = true;
+                        }
+
+                        con.modifyTask(4,id, title, con.searchTask(id).getDescription(), con.searchTask(id).getLimitDate(), priority, true);
                         break;
 
                     default:
@@ -209,6 +239,14 @@ public class ToDoMain {
         int year = Integer.parseInt(dateArray[2]);
         calendar.set(year, month, day);
         return calendar;
+    }
+
+    public static void undoAction()  {
+        try {
+            System.out.println(con.undoAction());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
