@@ -15,17 +15,14 @@ class HashTableTest {
         hash = new HashTable<Integer, Integer>();
     }
 
+
     private void setupScenary2(){
-
-    }
-
-    private void setupScenary3(){
         hash = new HashTable<Integer, Integer>();
         hash.add(1, 1);
 
     }
 
-    private void setupScenary4() {
+    private void setupScenary3() {
         hash = new HashTable<Integer, Integer>();
         hash.add(1, 1);
         hash.add(2, 2);
@@ -59,18 +56,9 @@ class HashTableTest {
     }
 
     @Test
-    public void hashNotEvenCreated(){
-        //setup test
-        setupScenary2();
-
-        //assert
-        assertNull(hash, "Fail creating a new hash table");
-    }
-
-    @Test
     public void addTest1(){
         //setup test
-        setupScenary3();
+        setupScenary2();
 
         //assert
         assertFalse(hash.isEmpty(), "The Hash is not empty");
@@ -79,7 +67,7 @@ class HashTableTest {
     @Test
     public void addTest2() {
         //setup test
-        setupScenary4();
+        setupScenary3();
 
         //act
         hash.add(1, 1);
@@ -95,7 +83,7 @@ class HashTableTest {
     @Test
     public void searchTest(){
         //setup test
-        setupScenary4();
+        setupScenary3();
 
         //act
         int value = hash.search(4);
