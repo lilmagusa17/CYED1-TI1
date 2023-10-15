@@ -2,8 +2,6 @@ package util;
 
 import exception.HashEmptyException;
 import exception.NonexistentKeyException;
-import util.HashNode;
-import util.IHash;
 
 public class HashTable<K, V extends Comparable<V>> implements IHash<K, V> {
 
