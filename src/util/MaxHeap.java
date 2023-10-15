@@ -76,15 +76,15 @@ class MaxHeap<T extends Comparable<T>> {
             current = getParentPosition(current);
         }
     }
-    //FIXME: ILEGALIDAD DE PRINT TERRIBLE
-    public void displayHeap() {
-        System.out.println("PARENT NODE" + "\t" + "LEFT CHILD NODE" + "\t" + "RIGHT CHILD NODE");
+    public String displayHeap() {
+        String msg  = ("PARENT NODE" + "\t" + "LEFT CHILD NODE" + "\t" + "RIGHT CHILD NODE");
         for (int k = 0; k < sizeOfHeap / 2; k++) {
             int leftChild = getLeftChildPosition(k);
             int rightChild = getRightChildPosition(k);
             System.out.print(" " + heapData.get(k) + "\t\t" + (leftChild < sizeOfHeap ? heapData.get(leftChild) : "N/A") + "\t\t" + (rightChild < sizeOfHeap ? heapData.get(rightChild) : "N/A"));
             System.out.println();
         }
+        return msg;
     }
 
     public void designMaxHeap() {

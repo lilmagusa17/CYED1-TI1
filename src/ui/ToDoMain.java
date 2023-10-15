@@ -204,7 +204,6 @@ public class ToDoMain {
                         date = sc.next();
                         con.modifyTask(3,id, con.searchTask(id).getDescription(), con.searchTask(id).getDescription(), stringtoCalendar(date), con.searchTask(id).getPriority(), true);
 
-
                         break;
 
                     case 4:
@@ -232,7 +231,18 @@ public class ToDoMain {
     }
 
     public static void deleteTask(){
-
+    System.out.println("Please enter the ID of the task you want to delete: ");
+    String id = sc.nextLine();
+    try {
+        boolean removed = con.removeTask(id, true);
+        if (removed) {
+            System.out.println("The: " + id + " task has been successfully deleted.");
+        } else {
+            System.out.println("The: " + id + " task was not found.");
+        }
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
     }
 
     private static Calendar stringtoCalendar(String date) {
@@ -252,7 +262,4 @@ public class ToDoMain {
             throw new RuntimeException(e);
         }
     }
-
-
-
 }

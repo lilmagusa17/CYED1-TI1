@@ -101,8 +101,6 @@ public class ToDoManager {
 
     }
 
-
-
     public boolean removeTask(String id, boolean isMain) throws Exception {
 
         boolean removed = false;
