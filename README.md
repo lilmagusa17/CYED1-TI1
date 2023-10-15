@@ -1,7 +1,8 @@
 # CYED1-TI1
-TO-DO List Java programm implementic some data structures
-ICESI University needs our software engineering abilities to create a management system of tasks and reminders. This system must allow the user to add, sort, and manage their pending tasks as well as their reminders.
+TO-DO List Java programm implementing data strucutres (Hash, stack, queue (heap/ priority queue))
+Java console programm that works as a TO-DO to manage tasks and reminders. The solution must allow the user to add, sort, and manage their pending tasks as well as their reminders.
 
-Programm specifications:
-
-* 
+## MEMBERS
+- Mariana Agudelo Salazar A00398722
+- Sharik Camila Rueda Lucero - A00399189
+- Natalia Vargas Parra - A00398706
