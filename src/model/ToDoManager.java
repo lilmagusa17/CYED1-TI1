@@ -50,8 +50,6 @@ public class ToDoManager {
             msg.append("Description: ").append(task.getDescription()).append("\n");
             msg.append("\n");
         }
-
-        // Sort the non-priority tasks by date
         nonPriorityTasks.sort(Comparator.comparing(TaskR::getLimitDate));
         msg.append("Non-Priority Tasks:\n");
         for (TaskR task : nonPriorityTasks) {
@@ -60,13 +58,11 @@ public class ToDoManager {
             msg.append("Description: ").append(task.getDescription()).append("\n");
             msg.append("\n");
         }
-
     return msg.toString();
     }
 
     public void modifyTask(String id, String title, String description, Calendar date, boolean priority, boolean isMain) throws Exception {
         TaskR taskOriginal = new TaskR(searchTask(id).getTitle(), searchTask(id).getDescription(), searchTask(id).getLimitDate(), searchTask(id).getPriority(), id) ;
-
         TaskR taskModified = searchTask(id);
         taskModified.setTitle(title);
         taskModified.setDescription(description);
@@ -100,7 +96,6 @@ public class ToDoManager {
         }
 
     }
-
     public boolean removeTask(String id, boolean isMain) throws Exception {
 
         boolean removed = false;
@@ -113,7 +108,6 @@ public class ToDoManager {
         return removed;
 
     }
-
     public TaskR searchTask(String id) throws Exception{
         try{
             return tasks.search(id);
@@ -138,9 +132,6 @@ public class ToDoManager {
     public String undoAction() throws Exception {
         String msg = "";
         boolean actionsIsEmpty = isEmptyStackActions();
-
-
-
         if (actionsIsEmpty){
             msg = "No action has been taken";
         }else {
