@@ -48,16 +48,18 @@ public class ToDoMain {
 
         //Loop to show the menu until the user
         // Exit option is 0
+        System.out.println(PURPLE + "These are you're current tasks, add a task to see it get updated!"+ RESET );
         do {
             option =obPpal.menu();
             obPpal.answerOption(option);
         }while (option !=0);
-
+        
     }
 
 
     public int menu(){
         int input;
+        System.out.println(con.displayTasks());
         System.out.println(PURPLE + "\t~~*~~*~~*~~*~~*~~*~~\n"+ RESET +
                                     "\t \t WELCOME \t \n"+ PURPLE +
                                   "\t~~*~~*~~*~~*~~*~~*~~\n\n"+ PURPLE_BOLD +
@@ -136,7 +138,7 @@ public class ToDoMain {
         if (!con.isEmpty()){
             System.out.println("Task added successfully!");
             System.out.println(PURPLE + "\t~~ TASK LIST ~~" + RESET);
-            System.out.println(con.displayTasks());
+            
         }
     }
 
