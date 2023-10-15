@@ -11,6 +11,7 @@ public class TaskR implements Comparable<TaskR> {
     private boolean priority;
     private String id;
     private DateFormat formatter;
+    
 
     public TaskR(String title, String description, Calendar date, boolean priority, String id) {
         this.title = title;
@@ -24,8 +25,6 @@ public class TaskR implements Comparable<TaskR> {
     public String getLimitDateFormatted() {
         return formatter.format(this.limitDate.getTime());
     }
-
-
 
     public String getTitle() {
         return title;

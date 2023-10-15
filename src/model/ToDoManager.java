@@ -2,29 +2,66 @@ package model;
 
 import exception.HashEmptyException;
 import exception.NonexistentKeyException;
+import util.HashNode;
 import util.HashTable;
 import util.Stack;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class ToDoManager {
 
     private HashTable<String, TaskR> tasks;
     private Stack<String, TaskR> stackActions;
-
+    private ArrayList<TaskR> priorityTasks;
+    private ArrayList<TaskR> nonPriorityTasks;
+    
     public ToDoManager() {
         tasks = new HashTable<String, TaskR>();
         stackActions = new Stack<String, TaskR>();
+        priorityTasks = new ArrayList<>();
+        nonPriorityTasks = new ArrayList<>();
     }
 
-    public void addTask(String title, String description, Calendar date, boolean priority, String id, boolean isMain) {
-        TaskR task = new TaskR(title, description, date, priority, id);
+    public void addTask(String title, String description, Calendar date, boolean isPriority, String id, boolean isMain) {
+        TaskR task = new TaskR(title, description, date, isPriority, id);
         tasks.add(id, task);
-        if(isMain){
+        if (isMain) {
             pushAction("addTask", task);
         }
+        if (isPriority) {
+            priorityTasks.add(task);
+        } else {
+            nonPriorityTasks.add(task);
+        }
+    }
 
+    public String displayTasks() {
+        StringBuilder msg = new StringBuilder();
+        priorityTasks.sort(Comparator.comparing(TaskR::getLimitDate));
+        msg.append("Priority Tasks:\n");
+        for (TaskR task : priorityTasks) {
+            msg.append("Title: ").append(task.getTitle()).append("\n");
+            msg.append("Date: ").append(task.getLimitDateFormatted()).append("\n");
+            msg.append("Description: ").append(task.getDescription()).append("\n");
+            msg.append("\n");
+        }
 
+        // Sort the non-priority tasks by date
+        nonPriorityTasks.sort(Comparator.comparing(TaskR::getLimitDate));
+        msg.append("Non-Priority Tasks:\n");
+        for (TaskR task : nonPriorityTasks) {
+            msg.append("Title: ").append(task.getTitle()).append("\n");
+            msg.append("Date: ").append(task.getLimitDateFormatted()).append("\n");
+            msg.append("Description: ").append(task.getDescription()).append("\n");
+            msg.append("\n");
+        }
+
+    return msg.toString();
     }
 
     public void modifyTask(String id, String title, String description, Calendar date, boolean priority, boolean isMain) throws Exception {
@@ -87,11 +124,11 @@ public class ToDoManager {
         }
     }
 
-    public void pushAction(String typeAction,  TaskR task){
+    public void pushAction(String typeAction, TaskR task) {
         stackActions.push(typeAction, task);
     }
 
-    public void pushAction(String typeAction, String id, TaskR task, TaskR taskModified){
+    public void pushAction(String typeAction, String id, TaskR task, TaskR taskModified) {
         stackActions.push(typeAction, task, taskModified);
     }
 

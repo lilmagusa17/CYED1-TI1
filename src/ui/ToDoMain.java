@@ -59,7 +59,7 @@ public class ToDoMain {
     public int menu(){
         int input;
         System.out.println(PURPLE + "\t~~*~~*~~*~~*~~*~~*~~\n"+ RESET +
-                                    "\t\t  WELCOME\n"+ PURPLE +
+                                    "\t \t WELCOME \t \n"+ PURPLE +
                                   "\t~~*~~*~~*~~*~~*~~*~~\n\n"+ PURPLE_BOLD +
 
                                  "\tPlease choose an option: \n\n"+ RESET+
@@ -119,6 +119,7 @@ public class ToDoMain {
         String description = sc.nextLine();
         System.out.println("\tDue date: (dd/mm/yyyy)");
         String date = sc.nextLine();
+        
         System.out.println("\tIs this task a priority? 1 Yes/2 No");
         int priorityOP = sc.nextInt();
         boolean priority = false;
@@ -132,8 +133,11 @@ public class ToDoMain {
         String id = sc.nextLine();
 
         con.addTask(title, description, stringtoCalendar(date), priority, id, true);
-        System.out.println(con.isEmpty());
-
+        if (!con.isEmpty()){
+            System.out.println("Task added successfully!");
+            System.out.println(PURPLE + "\t~~ TASK LIST ~~" + RESET);
+            System.out.println(con.displayTasks());
+        }
     }
 
     public static void modifyTask(){
